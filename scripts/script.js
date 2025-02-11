@@ -17,7 +17,7 @@ const generate_group_btn = document.getElementById('generate-groups');
 const groups_display = document.getElementById('groups-display');
 
 function addName(name) {
-    if (!name) return alert('Please enter a name');// if name is empty
+    if (!name) return ;// if name is empty
     SaveToLocalStorage(name);
     input_name.value = '';
     input_name.focus();
@@ -46,14 +46,14 @@ function displayNames() {
 
 function pickRandom() {
     let SavedData = getFromLocalStorage();
-    if (SavedData.length === 0) return alert('No names to pick from');
+    if (SavedData.length === 0) return picked_name.textContent = 'No names to pick from';
     let randomIndex = Math.floor(Math.random() * SavedData.length);
     picked_name.textContent = SavedData[randomIndex];
 }
 
 function generateGroups() {
     let SavedData = getFromLocalStorage();
-    if (SavedData.length === 0) return alert('No names to pick from');
+    if (SavedData.length === 0) return groups_display.innerHTML = '<div class="alert alert-danger">No names to generate groups</div>';
     let group_size = parseInt(group_size_input.value);
     let group_count = parseInt(group_count_input.value);
     if (group_size * group_count > SavedData.length) return alert('Not enough names');
